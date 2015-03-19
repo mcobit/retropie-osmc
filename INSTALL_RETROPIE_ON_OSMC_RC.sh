@@ -53,7 +53,7 @@ sudo echo "deb-src http://archive.raspbian.org/raspbian jessie main contrib non-
 
 echo ""
 echo "*******************************"
-echo "* Instaling some dependencies *"
+echo "* Installing some dependencies *"
 echo "*******************************"
 echo ""
 sleep 1s
@@ -73,10 +73,6 @@ cd /home/osmc
 sudo chown -R osmc RetroPie-Setup
 sudo chgrp -R osmc RetroPie-Setup
 
-# cp RetroPie-Setup/scriptmodules/admin/setup.sh RetroPie-Setup/scriptmodules/admin/setup.bak
-# head -n -46 RetroPie-Setup/scriptmodules/admin/setup.sh > temp.txt ; mv temp.txt RetroPie-Setup/scriptmodules/admin/setup.sh
-# cho "binaries_setup" >> RetroPie-Setup/scriptmodules/admin/setup.sh
-
 echo ""
 echo "**********************"
 echo "* Running the script *"
@@ -84,11 +80,8 @@ echo "**********************"
 echo ""
 sleep 1s
 cd /home/osmc/RetroPie-Setup
-#chmod +x retropie_setup.sh
-#sudo su osmc -c sudo ./retropie_setup.sh
 scriptdir=/home/osmc/RetroPie-Setup
 "$scriptdir/retropie_packages.sh" setup
-# cp RetroPie-Setup/scriptmodules/admin/setup.bak RetroPie-Setup/scriptmodules/admin/setup.sh
 
 echo ""
 echo "********************************************************"
@@ -97,7 +90,6 @@ echo "********************************************************"
 echo ""
 sleep 1s
 sudo apt-get -y remove stella
-
 sudo apt-get -y remove libboost1.55-dev
 
 echo ""
@@ -143,7 +135,7 @@ echo " Last round... *"
 echo "****************"
 echo ""
 sleep 1s
-sudo apt-get install libsdl-mixer1.2 libsdl-image1.2 libsdl-net1.2 libsdl-gfx1.2 libsdl-sound1.2 libsdl-ttf2.0-0
+sudo apt-get -y install libsdl-mixer1.2 libsdl-image1.2 libsdl-net1.2 libsdl-gfx1.2 libsdl-sound1.2 libsdl-ttf2.0-0
 echo ""
 echo "**************************************************"
 echo "* Remove unneeded repositories from sources.list *"
