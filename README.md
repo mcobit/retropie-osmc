@@ -28,4 +28,9 @@ choose binary installation!!!
 
 If you see it again, ignore uninstallable packages and select cancel afterwards. The rest of the script will continue.
 
+If you want a launcher in KODI, you have to setup a custom menu shortcut with "System.Exec(/home/osmc/retropie.sh)".
+the custom mediacenter script should already be in place.
+
+If you exit emulationstation when you started from the script, you should be back in KODI again.
+
 Good luck!
