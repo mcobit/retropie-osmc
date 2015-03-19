@@ -17,10 +17,10 @@ chown osmc:osmc /sys/class/vtconsole/vtcon*/bind
 if [ "$1" = "stop" ]; then
 	file1="/home/osmc/retropie_start"
 		if [ -e "$file1" ]; then
-			fb_restore
+#			fb_restore
 			rm /home/osmc/retropie_start
-			sudo su osmc -c "nohup emulationstation &" &
-			sleep 1s
+			openvt -c 7 emulationstation &
+			sleep 3
 			while [ true ]; do
 			VAR1="$(pgrep emulatio)"
     			if [ ! "$VAR1" ]; then
