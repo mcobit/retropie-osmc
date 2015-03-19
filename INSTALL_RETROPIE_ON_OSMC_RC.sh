@@ -145,15 +145,26 @@ sleep 1s
 head -n -2 /etc/apt/sources.list > temp.txt ; mv temp.txt /etc/apt/sources.list
 
 
+$
+echo ""
+echo "*****************************"
+echo "* Installing custom scripts *"
+echo "*****************************"
+echo ""
+cd /home/osmc
+wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/mediacenter
+wget https://github.com/mcobit/retropie-osmc/blob/master/retropie.sh
+chmod +x mediacenter
+chmod +x retropie.sh
+sudo cp mediacenter /usr/bin/mediacenter
+rm mediacenter
+
 echo ""
 echo "***************************************************************"
 echo "* If you want a menuentry in KODI, make a custom shortcut     *"
 echo "* with System.Exec(/home/osmc/retropie.sh                     *"
 echo "* The rest should be already done for you.                    *"
 echo "***************************************************************"
-echo ""
-
-
 echo ""
 echo "***************************************************************"
 echo "* Finished. Say a prayer and then type: emulationstation      *"
