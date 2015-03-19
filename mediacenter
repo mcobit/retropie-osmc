@@ -19,11 +19,20 @@ if [ "$1" = "stop" ]; then
 		if [ -e "$file1" ]; then
 			fb_restore
 			rm /home/osmc/retropie_start
-			sudo -u osmc sh /usr/bin/emulationstation
-			sudo service mediacenter start &
+			sudo su osmc -c "nohup emulationstation &" &
 			sleep 1s
+			while [ true ]; do
+			VAR1="$(pgrep emulatio)"
+    			if [ ! "$VAR1" ]; then
+			sleep 1
+			sudo service mediacenter restart &
+			sleep 1
 			exit
+       			fi
+    			sleep 3
+			done
 		else
+
 			fb_restore
 			exit
 		fi
