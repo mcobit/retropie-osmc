@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# VERSION 1.2 by mcobit
+
+
 echo ""
 echo "************************************"
 echo "* Installation of Retropie on OSMC *"
@@ -54,8 +57,8 @@ echo "* Instaling some dependencies *"
 echo "*******************************"
 echo ""
 sleep 1s
-#sudo apt-get update
-#sudo apt-get -y install libts-dev git dialog
+sudo apt-get update
+sudo apt-get -y install libts-dev git dialog
 
 echo ""
 echo "******************************"
