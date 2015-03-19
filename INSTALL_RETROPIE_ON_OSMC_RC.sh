@@ -144,6 +144,16 @@ echo ""
 sleep 1s
 head -n -2 /etc/apt/sources.list > temp.txt ; mv temp.txt /etc/apt/sources.list
 
+
+echo ""
+echo "***************************************************************"
+echo "* If you want a menuentry in KODI, make a custom shortcut     *"
+echo "* with System.Exec(/home/osmc/retropie.sh                     *"
+echo "* The rest should be already done for you.                    *"
+echo "***************************************************************"
+echo ""
+
+
 echo ""
 echo "***************************************************************"
 echo "* Finished. Say a prayer and then type: emulationstation      *"
