@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # VERSION 1.2 by mcobit
@@ -152,10 +153,14 @@ echo "* Installing custom scripts *"
 echo "*****************************"
 echo ""
 cd /home/osmc
+rm mediacenter
+rm retropie.sh
 wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/mediacenter
 wget https://github.com/mcobit/retropie-osmc/blob/master/retropie.sh
 chmod +x mediacenter
 chmod +x retropie.sh
+chown osmc retropie.sh
+chown osmc mediacenter
 sudo cp mediacenter /usr/bin/mediacenter
 rm mediacenter
 
