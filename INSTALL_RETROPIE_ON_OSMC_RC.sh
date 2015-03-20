@@ -156,12 +156,12 @@ echo "* Installing custom scripts *"
 echo "*****************************"
 echo ""
 cd /home/osmc
-rm mediacenter
-rm retropie.sh
-rm retropie_watchdog.sh
+rm mediacenter retropie.sh retropie_watchdog.sh
+
 wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/mediacenter
 wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/retropie.sh
 wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/retropie_watchdog.sh
+
 chmod +x retropie_watchdog.sh
 chmod +x mediacenter
 chmod +x retropie.sh
@@ -174,7 +174,7 @@ rm mediacenter
 echo ""
 echo "***************************************************************"
 echo "* If you want a menuentry in KODI, make a custom shortcut     *"
-echo "* with System.Exec(/home/osmc/retropie.sh                     *"
+echo "* with System.Exec(/home/osmc/retropie.sh)                    *"
 echo "* The rest should be already done for you.                    *"
 echo "***************************************************************"
 echo ""
