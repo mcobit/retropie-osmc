@@ -19,10 +19,11 @@ if [ "$1" = "stop" ]; then
 		if [ -e "$file1" ]; then
 			fb_restore
 			rm /home/osmc/retropie_start
-                        sudo su osmc -c "nohup openvt -c 7 -f -s sh /home/osmc/retropie_watchdog.sh &" &
+                        sudo sudo su osmc -c "sh /home/osmc/retropie_watchdog.sh &" &
 			sleep 1
-			sudo su osmc -c "nohup openvt -c 7 -f -s emulationstation &" &
-			sleep 3
+                        sudo su osmc -c "openvt -c 7 -f -s emulationstation" &
+			sleep 4
+			exit
 		else
 			fb_restore
 			exit
