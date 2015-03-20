@@ -19,20 +19,11 @@ if [ "$1" = "stop" ]; then
 		if [ -e "$file1" ]; then
 			fb_restore
 			rm /home/osmc/retropie_start
-			sudo -u osmc openvt -c 8 -f -s emulationstation &
+                        sudo su osmc -c "nohup openvt -c 7 -f -s sh /home/osmc/retropie_watchdog.sh &" &
+			sleep 1
+			sudo su osmc -c "nohup openvt -c 7 -f -s emulationstation &" &
 			sleep 3
-			while [ true ]; do
-			VAR1="$(pgrep emulatio)"
-    			if [ ! "$VAR1" ]; then
-			sleep 1
-			sudo service mediacenter restart &
-			sleep 1
-			exit
-       			fi
-    			sleep 3
-			done
 		else
-
 			fb_restore
 			exit
 		fi
