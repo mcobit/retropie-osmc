@@ -131,7 +131,7 @@ echo " Last round... *"
 echo "****************"
 echo ""
 sleep 1s
-sudo apt-get -y install libsdl-mixer1.2 libsdl-image1.2 libsdl-net1.2 libsdl-gfx1.2-5 libsdl-sound1.2 libsdl-ttf2.0-0
+sudo apt-get -y install libsdl-mixer1.2 libsdl-image1.2 libsdl-net1.2 libsdl-gfx1.2-5 libsdl-sound1.2 libsdl-ttf2.0-0 console-tools bash-completion
 
 wget http://malus.exotica.org.uk/~buzz/pi/sdl/sdl1/deb/rpi2/libsdl1.2debian_1.2.15-8rpi_armhf.deb
 wget http://malus.exotica.org.uk/~buzz/pi/sdl/sdl2/libsdl2_2.0.3_armhf.deb
