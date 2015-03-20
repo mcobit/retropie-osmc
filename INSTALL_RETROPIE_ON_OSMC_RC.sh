@@ -157,7 +157,7 @@ cd /home/osmc
 rm mediacenter
 rm retropie.sh
 wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/mediacenter
-wget https://github.com/mcobit/retropie-osmc/blob/master/retropie.sh
+wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master//retropie.sh
 chmod +x mediacenter
 chmod +x retropie.sh
 chown osmc retropie.sh
