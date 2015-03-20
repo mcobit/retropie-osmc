@@ -50,7 +50,6 @@ echo ""
 sleep 1s
 sudo cp /etc/apt/sources.list /etc/apt/sources.bak
 sudo echo "deb http://archive.raspbian.org/raspbian jessie main contrib non-free" >> /etc/apt/sources.list
-sudo echo "deb-src http://archive.raspbian.org/raspbian jessie main contrib non-free" >> /etc/apt/sources.list
 
 echo ""
 echo "*******************************"
@@ -138,13 +137,16 @@ wget http://malus.exotica.org.uk/~buzz/pi/sdl/sdl2/libsdl2_2.0.3_armhf.deb
 
 sudo dpkg -i libsdl*
 
+sudo apt-mark hold libsdl1.2debian
+sudo apt-mark hold libsdl2
+
 echo ""
 echo "**************************************************"
 echo "* Remove unneeded repositories from sources.list *"
 echo "**************************************************"
 echo ""
 sleep 1s
-head -n -2 /etc/apt/sources.list > temp.txt ; mv temp.txt /etc/apt/sources.list
+head -n -1 /etc/apt/sources.list > temp.txt ; mv temp.txt /etc/apt/sources.list
 
 
 $
