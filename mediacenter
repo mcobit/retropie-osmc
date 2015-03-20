@@ -19,7 +19,7 @@ if [ "$1" = "stop" ]; then
 		if [ -e "$file1" ]; then
 #			fb_restore
 			rm /home/osmc/retropie_start
-			su osmc -c "openvt -c 7 -f emulationstation" &
+			su osmc -c "openvt -f -s emulationstation" &
 			sleep 3
 			while [ true ]; do
 			VAR1="$(pgrep emulatio)"
