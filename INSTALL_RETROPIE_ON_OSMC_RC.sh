@@ -20,7 +20,7 @@ echo "!      Press Enter to continue      !"
 echo "!      Press Ctrl + C to quit       !"
 echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 sleep 1
-read
+sudo su osmc -c "read"
 
 echo ""
 echo "****************************"
@@ -28,7 +28,7 @@ echo "* Checking if you are root *"
 echo "****************************"
 echo ""
 # check, if sudo is used
-if [[ $(id -u) -ne 0 ]]; then
+if [ $(id -u) -ne 0 ]; then
 echo "Script must be run as root. Try 'sudo $0'"
 exit 1
 fi
@@ -67,7 +67,7 @@ echo "******************************"
 echo ""
 sleep 1s
 cd /home/osmc
-sudo rm -r RetroRie-Setup
+sudo rm -r RetroPie-Setup
 git clone git://github.com/petrockblog/RetroPie-Setup.git
 cd /home/osmc
 sudo chown -R osmc RetroPie-Setup
@@ -158,12 +158,16 @@ echo ""
 cd /home/osmc
 rm mediacenter
 rm retropie.sh
+rm retropie_watchdog.sh
 wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/mediacenter
 wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/retropie.sh
+wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/retropie_watchdog.sh
+chmod +x retropie_watchdog.sh
 chmod +x mediacenter
 chmod +x retropie.sh
 chown osmc retropie.sh
 chown osmc mediacenter
+chown osmc retropie_watchdog.sh
 sudo cp mediacenter /usr/bin/mediacenter
 rm mediacenter
 
