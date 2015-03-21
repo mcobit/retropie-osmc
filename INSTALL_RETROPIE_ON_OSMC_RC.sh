@@ -1,7 +1,6 @@
-
 #!/bin/bash
 
-# VERSION 1.2 by mcobit
+# VERSION 1.3 by mcobit
 
 
 echo ""
@@ -31,6 +30,30 @@ echo ""
 if [ $(id -u) -ne 0 ]; then
 echo "Script must be run as root. Try 'sudo $0'"
 exit 1
+fi
+
+echo ""
+echo "*********************************************"
+echo "* Checking for newer version of this script *"
+echo "*********************************************"
+echo ""
+sleep 1
+
+wget -O script_temp https://raw.githubusercontent.com/mcobit/retropie-osmc/master/INSTALL_RETROPIE_ON_OSMC_RC.sh
+
+VER1="$(head -n 3 INSTALL_RETROPIE_ON_OSMC_RC.sh)"
+VER2="$(head -n 3 script_temp)"
+
+if [ "$VER1" != "$VER2" ]; then
+	sudo cp script_temp INSTALL_RETROPIE_ON_OSMC_RC.sh
+	sudo chmod +x INSTALL_RETROPIE_ON_OSMC_RC.sh
+	sudo chown osmc INSTALL_RETROPIE_ON_OSMC_RC.sh
+	rm script_temp
+	echo "Newer version detected and downloaded. Restarting..."
+	sudo ./INSTALL_RETROPIE_ON_OSMC_RC.sh
+	exit
+else
+	echo "Script up to date."
 fi
 
 echo ""
