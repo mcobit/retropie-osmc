@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VERSION 1.3 by mcobit
+# VERSION 1.4 by mcobit
 
 
 echo ""
@@ -72,6 +72,9 @@ echo "* Adding sources of Raspbian Jessie to the sources.list file *"
 echo "**************************************************************"
 echo ""
 sleep 1s
+
+sudo grep -v "raspbian" /etc/apt/sources.list > temp
+sudo mv temp /etc/apt/sources.list
 sudo cp /etc/apt/sources.list /etc/apt/sources.bak
 sudo echo "deb http://archive.raspbian.org/raspbian jessie main contrib non-free" >> /etc/apt/sources.list
 
