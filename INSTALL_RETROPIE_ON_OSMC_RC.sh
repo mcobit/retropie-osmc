@@ -54,6 +54,7 @@ if [ "$VER1" != "$VER2" ]; then
 	exit
 else
 	echo "Script up to date."
+	rm script_temp
 fi
 
 echo ""
