@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VERSION 1.5 by mcobit
+# VERSION 1.6 by mcobit
 
 
 echo ""
@@ -26,7 +26,7 @@ echo "****************************"
 echo "* Checking if you are root *"
 echo "****************************"
 echo ""
-# check, if sudo is used
+# check, if sudo is used (taken and modified from RetroPie setup script)
 if [ $(id -u) -ne 0 ]; then
 echo "Script must be run as root. Try 'sudo $0'"
 exit 1
