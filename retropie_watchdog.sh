@@ -1,6 +1,4 @@
 #!/bin/bash
-sudo openvt -c 7 -s -f clear
-sudo openvt -c 7 -s -f echo "Running emulationstation from KODI"
 sleep 2
 while [ true ]; do
 	VAR1="$(pgrep emulatio)"

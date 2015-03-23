@@ -9,9 +9,8 @@ sudo openvt -c 7 -s -f clear
 sudo openvt -c 7 -s -f echo "Running emulationstation from KODI"
 
 sudo su osmc -c "sh /home/osmc/retropie_watchdog.sh &" &
-#sleep 1
 sudo su osmc -c "nohup openvt -c 7 -f -s emulationstation &" &
-sleep 1
-#sudo su -c "nohup service mediacenter stop &" &
+sleep 3
+sudo openvt -c 7 -s -f clear
 
 exit

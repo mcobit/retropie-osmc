@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VERSION 1.6 by mcobit
+# VERSION 1.8 by mcobit
 
 
 echo ""
@@ -184,18 +184,45 @@ echo ""
 cd /home/osmc
 rm mediacenter retropie.sh retropie_watchdog.sh
 
-wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/mediacenter
 wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/retropie.sh
 wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/retropie_watchdog.sh
 
 chmod +x retropie_watchdog.sh
-chmod +x mediacenter
 chmod +x retropie.sh
 chown osmc retropie.sh
-chown osmc mediacenter
 chown osmc retropie_watchdog.sh
-sudo cp mediacenter /usr/bin/mediacenter
-rm mediacenter
+
+echo ""
+echo "*************************************************************"
+echo "* Would you like to create a menushortcut in the OSMC skin? *"
+echo "* Press Y for yes and anything else for no.                             *"
+echo "*************************************************************"
+echo ""
+
+read a
+if [[ $a == "Y" || $a == "y" || $a = "" ]]; then
+        echo "Installing shortcut if it doesn't exist already."
+
+if [ ! "$(grep retropie.sh /home/osmc/.kodi/userdata/addon_data/script.skinshortcuts/mainmenu.DATA.xml)" ]; then
+
+CONTENT='        <shortcut>\
+                <defaultID />\
+                <label>RetroPie</label>\
+                <label2>Custom Shortcut</label2>\
+                <icon>DefaultShortcut.png</icon>\
+                <thumb />\
+                <action>System.Exec(/home/osmc/retropie.sh)</action>\
+        </shortcut>'
+
+sed -i.bak '/<\/shortcuts>/i\'"$CONTENT" /home/osmc/.kodi/userdata/addon_data/script.skinshortcuts/mainmenu.DATA$
+
+else
+
+echo "Shortcut already created. Skipping..."
+
+fi
+
+fi
 
 echo ""
 echo "***************************************************************"
