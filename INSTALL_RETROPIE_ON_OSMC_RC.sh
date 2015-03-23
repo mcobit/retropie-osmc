@@ -63,7 +63,7 @@ echo "* Stopping KODI if it is running *"
 echo "**********************************"
 echo ""
 sleep 1s
-sudo service mediacenter stop
+sudo systemctl stop mediacenter
 sleep 1s
 
 echo ""

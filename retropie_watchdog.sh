@@ -7,7 +7,7 @@ while [ true ]; do
 			sudo openvt -c 7 -s -f echo "Emulationstation quit... Starting KODI."
 			sleep 1
 			sudo openvt -c 7 -f clear
-			sudo su -c "service mediacenter restart &" &
+			sudo su -c "sudo systemctl restart mediacenter &" &
 			sleep 1
 			exit
 		else
