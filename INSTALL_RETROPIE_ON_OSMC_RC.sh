@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VERSION 1.10 by mcobit
+# VERSION 1.11 by mcobit
 
 
 echo ""
@@ -49,8 +49,7 @@ if [ "$VER1" != "$VER2" ]; then
 	sudo chmod +x INSTALL_RETROPIE_ON_OSMC_RC.sh
 	sudo chown osmc INSTALL_RETROPIE_ON_OSMC_RC.sh
 	rm script_temp
-	echo "Newer version detected and downloaded. Restarting..."
-	sudo ./INSTALL_RETROPIE_ON_OSMC_RC.sh
+	echo "Newer version detected and downloaded. Please restart the script!"
 	exit
 else
 	echo "Script up to date."
