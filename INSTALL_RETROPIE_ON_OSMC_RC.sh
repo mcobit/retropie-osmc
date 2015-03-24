@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VERSION 1.8 by mcobit
+# VERSION 1.9 by mcobit
 
 
 echo ""
