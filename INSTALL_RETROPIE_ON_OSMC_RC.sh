@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VERSION 1.11 by mcobit
+# VERSION 1.12 by mcobit
 
 
 echo ""
@@ -181,15 +181,21 @@ echo "* Installing custom scripts *"
 echo "*****************************"
 echo ""
 cd /home/osmc
-rm mediacenter retropie.sh retropie_watchdog.sh
+rm mediacenter retropie.sh retropie_watchdog.sh emulationstation
 
 wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/retropie.sh
 wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/retropie_watchdog.sh
+wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/emulationstation
 
+chmod +x emulationstation
 chmod +x retropie_watchdog.sh
 chmod +x retropie.sh
+chown osmc emulationstation
 chown osmc retropie.sh
 chown osmc retropie_watchdog.sh
+
+sudo cp emulationstation /usr/bin/
+rm emulationstation
 
 echo ""
 echo "*************************************************************"
@@ -199,7 +205,7 @@ echo "*************************************************************"
 echo ""
 
 read a
-if [[ $a == "Y" || $a == "y" || $a = "" ]]; then
+if [[ $a == "Y" || $a == "y" ]]; then
         echo "Installing shortcut if it doesn't exist already."
 
 if [ ! "$(grep retropie.sh /home/osmc/.kodi/userdata/addon_data/script.skinshortcuts/mainmenu.DATA.xml)" ]; then
