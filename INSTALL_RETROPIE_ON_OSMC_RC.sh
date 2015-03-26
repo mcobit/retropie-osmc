@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VERSION 1.13 by mcobit
+# VERSION 1.14 by mcobit
 
 #echo ""
 #echo "************************************"
@@ -130,7 +130,7 @@ scriptdir=/home/osmc/RetroPie-Setup
 #echo "********************************************************"
 #echo ""
 #sleep 1s
-sudo apt-get --show-progress -y remove stella libboost1.55-dev | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Uninstalling useless stuff" --gauge "\nPlease wait...\n"  7 60
+sudo apt-get --show-progress -y remove stella libboost1.55-dev libsdl1.2-dev libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Uninstalling useless stuff" --gauge "\nPlease wait...\n"  7 60
 
 #echo ""
 #echo "********************************"
