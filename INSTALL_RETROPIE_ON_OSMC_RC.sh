@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VERSION 1.19 by mcobit
+# VERSION 2.00 by mcobit
 
 #echo ""
 #echo "************************************"
@@ -100,6 +100,7 @@ dialog --backtitle "RetroPie-OSMC setup script" --title "Adding sources of Raspb
 #sleep 1s
 sudo apt-mark unhold libsdl1.2debian libsdl2 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --backtitle "RetroPie-OSMC setup script" --title "Marking Dispmanx SDL libraries for hold" --infobox "\nPlease wait...\n" 5 50
 sudo dpkg --configure -a
+sudo dpkg -r --force-depends libsdl2
 sudo apt-get -y -f install | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Checking database" --gauge "\nPlease wait...\n"  7 60
 sudo apt-get update 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" 2>&1 | dialog --backtitle "RetroPie-OSMC setup script" --title "Updating package database..." --infobox "\nPlease wait\n"  5 60
 sudo apt-get -y --show-progress install libts-dev git dialog | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Installing dependencies" --gauge "\nPlease wait...\n"  7 60
@@ -133,6 +134,7 @@ scriptdir=/home/osmc/RetroPie-Setup
 #echo "********************************************************"
 #echo ""
 #sleep 1s
+sudo dpkg -r --force-depends libsdl2
 sudo apt-get -f -y --show-progress install | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Fixing broken stuff" --gauge "\nPlease wait...\n"  7 60
 sudo apt-get --show-progress -y remove libsdl2 libsdl1.2-dev stella libboost1.55-dev libsdl1.2-dev libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev libboost-atomic1.55-dev libboost-chrono1.55-dev libboost-date-time1.55-dev libboost-filesystem1.55-dev libboost-locale1.55-dev libboost-serialization1.55-dev libboost-system1.55-dev libboost-thread1.55-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev  libboost-system-dev libboost-thread-dev | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Uninstalling useless stuff" --gauge "\nPlease wait...\n"  7 60
 
