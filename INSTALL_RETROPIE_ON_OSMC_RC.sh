@@ -131,7 +131,7 @@ scriptdir=/home/osmc/RetroPie-Setup
 #echo ""
 #sleep 1s
 sudo apt-get -f -y --show-progress install | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Fixing broken stuff" --gauge "\nPlease wait...\n"  7 60
-sudo apt-get --show-progress -y remove libsdl2 libsdl2-dev stella libboost1.55-dev libsdl1.2-dev libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev libboost-atomic1.55-dev libboost-chrono1.55-dev libboost-date-time1.55-dev libboost-filesystem1.55-dev libboost-locale1.55-dev libboost-serialization1.55-dev libboost-system1.55-dev libboost-thread1.55-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev  libboost-system-dev libboost-thread-dev | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Uninstalling useless stuff" --gauge "\nPlease wait...\n"  7 60
+sudo apt-get --show-progress -y remove libsdl2 libsdl.2-dev stella libboost1.55-dev libsdl1.2-dev libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev libboost-atomic1.55-dev libboost-chrono1.55-dev libboost-date-time1.55-dev libboost-filesystem1.55-dev libboost-locale1.55-dev libboost-serialization1.55-dev libboost-system1.55-dev libboost-thread1.55-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev  libboost-system-dev libboost-thread-dev | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Uninstalling useless stuff" --gauge "\nPlease wait...\n"  7 60
 
 #echo ""
 #echo "********************************"
@@ -171,7 +171,7 @@ sudo apt-get --show-progress -y autoremove | grep --line-buffered -oP "(\d+(\.\d
 #echo "****************"
 #echo ""
 #sleep 1s
-sudo apt-get --show-progress -y install libsdl-mixer1.2 libsdl-image1.2 libsdl-net1.2 libsdl-gfx1.2-5 libsdl-sound1.2 libsdl-ttf2.0-0 console-tools bash-completion libvncserver0 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Last round" --gauge "\nPlease wait...\n"  7 60
+sudo apt-get --show-progress -y install libxcursor1 libxrandr2 libxss1 libxxf86vm1 libudev0 libsdl-mixer1.2 libsdl-image1.2 libsdl-net1.2 libsdl-gfx1.2-5 libsdl-sound1.2 libsdl-ttf2.0-0 console-tools bash-completion libvncserver0 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Last round" --gauge "\nPlease wait...\n"  7 60
 
 wget http://malus.exotica.org.uk/~buzz/pi/sdl/sdl1/deb/rpi2/libsdl1.2debian_1.2.15-8rpi_armhf.deb 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading Dispmanx SDL 1.2 " --gauge "\nPlease wait...\n"  7 60
 wget http://malus.exotica.org.uk/~buzz/pi/sdl/sdl2/libsdl2_2.0.3_armhf.deb 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading Dispmanx SDL 2" --gauge "\nPlease wait...\n"  7 60
