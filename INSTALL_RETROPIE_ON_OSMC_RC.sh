@@ -143,7 +143,7 @@ sudo apt-get --show-progress -y remove libegl1-mesa libsdl2 libsdl1.2-dev stella
 #echo "********************************"
 #echo ""
 #sleep 1s
-sudo apt-get --show-progress -y install libboost-system1.49.0 libboost-date-time1.49.0 libboost-filesystem1.49.0 libboost-locale1.49.0 libboost-thread1.49.0 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Installing useful stuff" --gauge "\nPlease wait...\n"  7 60
+sudo apt-get --show-progress -y install libxinerama1 libboost-system1.49.0 libboost-date-time1.49.0 libboost-filesystem1.49.0 libboost-locale1.49.0 libboost-thread1.49.0 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Installing useful stuff" --gauge "\nPlease wait...\n"  7 60
 
 #echo ""
 #echo "*******************************"
