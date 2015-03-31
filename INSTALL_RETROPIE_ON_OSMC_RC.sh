@@ -132,7 +132,7 @@ scriptdir=/home/osmc/RetroPie-Setup
 #echo ""
 #sleep 1s
 sudo apt-get -f -y --show-progress install | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Fixing broken stuff" --gauge "\nPlease wait...\n"  7 60
-sudo apt-get --show-progress -y remove libsdl2 libsdl.2-dev stella libboost1.55-dev libsdl1.2-dev libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev libboost-atomic1.55-dev libboost-chrono1.55-dev libboost-date-time1.55-dev libboost-filesystem1.55-dev libboost-locale1.55-dev libboost-serialization1.55-dev libboost-system1.55-dev libboost-thread1.55-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev  libboost-system-dev libboost-thread-dev | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Uninstalling useless stuff" --gauge "\nPlease wait...\n"  7 60
+sudo apt-get --show-progress -y remove libsdl2 libsdl1.2-dev stella libboost1.55-dev libsdl1.2-dev libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev libboost-atomic1.55-dev libboost-chrono1.55-dev libboost-date-time1.55-dev libboost-filesystem1.55-dev libboost-locale1.55-dev libboost-serialization1.55-dev libboost-system1.55-dev libboost-thread1.55-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev  libboost-system-dev libboost-thread-dev | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Uninstalling useless stuff" --gauge "\nPlease wait...\n"  7 60
 
 #echo ""
 #echo "********************************"
