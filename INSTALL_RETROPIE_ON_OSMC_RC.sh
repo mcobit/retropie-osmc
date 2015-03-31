@@ -100,6 +100,7 @@ dialog --backtitle "RetroPie-OSMC setup script" --title "Adding sources of Raspb
 #sleep 1s
 sudo apt-get update 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" 2>&1 | dialog --backtitle "RetroPie-OSMC setup script" --title "Updating package database..." --infobox "\nPlease wait\n"  5 60
 sudo apt-get -y --show-progress install libts-dev git dialog | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Installing dependencies" --gauge "\nPlease wait...\n"  7 60
+sudo apt-mark unhold libsdl1.2debian libsdl2 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --backtitle "RetroPie-OSMC setup script" --title "Marking Dispmanx SDL libraries for hold" --infobox "\nPlease wait...\n" 5 50
 
 #echo ""
 #echo "******************************"
