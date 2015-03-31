@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VERSION 1.17 by mcobit
+# VERSION 1.18 by mcobit
 
 #echo ""
 #echo "************************************"
