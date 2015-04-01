@@ -142,12 +142,6 @@ scriptdir=/home/osmc/RetroPie-Setup
 #sleep 1s
 sudo apt-get remove libsdl2-2.0-0 | dialog  --backtitle "RetroPie-OSMC setup script" --title "Remove old SDL2" --gauge "\nPlease wait...\n"  7 60
 sudo apt-get -f -y --show-progress install | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Fixing broken stuff" --gauge "\nPlease wait...\n"  7 60
-#echo ""
-#echo "********************************"
-#echo "* Installing some useful stuff *"
-#echo "********************************"
-#echo ""
-#sleep 1s
 
 #echo ""
 #echo "*******************************"
@@ -158,13 +152,6 @@ sudo apt-get -f -y --show-progress install | grep --line-buffered -oP "(\d+(\.\d
 sudo apt-get --show-progress -y remove libsdl1.2-dev libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Uninstalling more useless stuff" --gauge "\nPlease wait...\n"  7 60
 
 #echo ""
-#echo "********************************"
-#echo "* Installing more useful stuff *"
-#echo "********************************"
-#echo ""
-#sleep 1s
-
-#echo ""
 #echo "***************"
 #echo "* Cleaning up *"
 #echo "***************"
@@ -173,9 +160,9 @@ sudo apt-get --show-progress -y remove libsdl1.2-dev libsdl-gfx1.2-dev libsdl-im
 sudo apt-get --show-progress -y autoremove | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Cleaning up" --gauge "\nPlease wait...\n"  7 60
 
 #echo ""
-#echo "****************"
-#echo " Last round... *"
-#echo "****************"
+#echo "****************************"
+#echo " Dispmanx SDL libraries... *"
+#echo "****************************"
 #echo ""
 #sleep 1s
 
