@@ -98,11 +98,11 @@ dialog --backtitle "RetroPie-OSMC setup script" --title "Adding sources of Raspb
 #echo "*******************************"
 #echo ""
 #sleep 1s
-sudo apt-mark unhold libsdl1.2debian libsdl2 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --backtitle "RetroPie-OSMC setup script" --title "Marking Dispmanx SDL libraries for hold" --infobox "\nPlease wait...\n" 5 50
+#sudo apt-mark unhold libsdl1.2debian libsdl2 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --backtitle "RetroPie-OSMC setup script" --title "Marking Dispmanx SDL libraries for hold" --infobox "\nPlease wait...\n" 5 50
 sudo dpkg --configure -a
 sudo dpkg -r --force-depends libsdl2
 sudo apt-get -y -f install | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Checking database" --gauge "\nPlease wait...\n"  7 60
-sudo apt-get update 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" 2>&1 | dialog --backtitle "RetroPie-OSMC setup script" --title "Updating package database..." --infobox "\nPlease wait\n"  5 60
+#sudo apt-get update 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" 2>&1 | dialog --backtitle "RetroPie-OSMC setup script" --title "Updating package database..." --infobox "\nPlease wait\n"  5 60
 sudo apt-get -y --show-progress install libts-dev git dialog | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Installing dependencies" --gauge "\nPlease wait...\n"  7 60
 
 #echo ""
@@ -124,6 +124,10 @@ sudo chgrp -R osmc RetroPie-Setup
 #echo ""
 #sleep 1s
 cd /home/osmc/RetroPie-Setup
+sed -i '/depends_/,/}/d' scriptmodules/libretrocores/*
+sed -i '/depends_/,/}/d' scriptmodules/supplementary/*
+sed -i '/depends_/,/}/d' scriptmodules/ports/*
+sed -i '/depends_/,/}/d' scriptmodules/emulators/*
 scriptdir=/home/osmc/RetroPie-Setup
 "$scriptdir/retropie_packages.sh" setup
 
@@ -175,7 +179,7 @@ sudo apt-get --show-progress -y autoremove | grep --line-buffered -oP "(\d+(\.\d
 #echo "****************"
 #echo ""
 #sleep 1s
-sudo apt-get --show-progress -y install libglu1-mesa libxcursor1 libxrandr2 libxss1 libxxf86vm1 libudev0 libsdl-mixer1.2 libsdl-image1.2 libsdl-net1.2 libsdl-gfx1.2-5 libsdl-sound1.2 libsdl-ttf2.0-0 console-tools bash-completion libvncserver0 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Last round" --gauge "\nPlease wait...\n"  7 60
+sudo apt-get --show-progress -y install libxcursor1 libxrandr2 libxss1 libxxf86vm1 libudev0 libsdl-mixer1.2 libsdl-image1.2 libsdl-net1.2 libsdl-gfx1.2-5 libsdl-sound1.2 libsdl-ttf2.0-0 console-tools bash-completion libvncserver0 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Last round" --gauge "\nPlease wait...\n"  7 60
 
 wget http://malus.exotica.org.uk/~buzz/pi/sdl/sdl1/deb/rpi2/libsdl1.2debian_1.2.15-8rpi_armhf.deb 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading Dispmanx SDL 1.2 " --gauge "\nPlease wait...\n"  7 60
 wget http://malus.exotica.org.uk/~buzz/pi/sdl/sdl2/libsdl2_2.0.3_armhf.deb 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading Dispmanx SDL 2" --gauge "\nPlease wait...\n"  7 60
