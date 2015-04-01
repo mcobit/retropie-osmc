@@ -84,10 +84,9 @@ sudo systemctl stop mediacenter | dialog --backtitle "RetroPie-OSMC setup script
 #echo ""
 #sleep 1s
 
-
+sudo cp /etc/apt/sources.list /etc/apt/sources.bak
 sudo grep -v "raspbian" /etc/apt/sources.list > temp
 sudo mv temp /etc/apt/sources.list
-sudo cp /etc/apt/sources.list /etc/apt/sources.bak
 sudo echo "deb http://archive.raspbian.org/raspbian jessie main contrib non-free" >> /etc/apt/sources.list
 
 dialog --backtitle "RetroPie-OSMC setup script" --title "Adding sources of Raspbian Jessie to sources.list file" --pause "\nSources added.\n" 9 60 2
@@ -98,7 +97,7 @@ dialog --backtitle "RetroPie-OSMC setup script" --title "Adding sources of Raspb
 #echo "*******************************"
 #echo ""
 #sleep 1s
-sudo apt-mark unhold libsdl1.2debian libsdl2 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --backtitle "RetroPie-OSMC setup script" --title "Marking Dispmanx SDL libraries for hold" --infobox "\nPlease wait...\n" 5 50
+sudo apt-mark unhold libsdl1.2debian libsdl2 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --backtitle "RetroPie-OSMC setup script" --title "Unmarking Dispmanx SDL libraries for hold" --infobox "\nPlease wait...\n" 5 50
 sudo dpkg --configure -a
 sudo apt-get remove libsdl2-2.0-0 | dialog  --backtitle "RetroPie-OSMC setup script" --title "Remove old SDL2" --gauge "\nPlease wait...\n"  7 60
 sudo apt-get -y -f install | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Checking database" --gauge "\nPlease wait...\n"  7 60
@@ -196,6 +195,7 @@ sudo apt-mark hold libsdl1.2debian libsdl2 2>&1 | grep --line-buffered -oP "(\d+
 sudo grep -v "raspbian" /etc/apt/sources.list > temp
 sudo mv temp /etc/apt/sources.list
 dialog --backtitle "RetroPie-OSMC setup script" --title "Removing unneeded sources from sources.list" --pause "\nSources removed.\n" 9 60 2
+sudo cp /etc/apt/sources.bak /etc/apt/sources.list
 sudo apt-get update 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" 2>&1 | dialog --backtitle "RetroPie-OSMC setup script" --title "Updating package database to revert changes" --infobox "\nPlease wait\n"  5 60
 
 #echo ""
@@ -237,7 +237,7 @@ dialog --backtitle "RetroPie-OSMC setup script" --title "Creating shortcut" --cl
 
 case $? in
   0)
-    echo "Very well..." 
+#   "Very well..." 
     if [ ! "$(grep retropie.sh /home/osmc/.kodi/userdata/addon_data/script.skinshortcuts/mainmenu.DATA.xml)" ]; then
 
 CONTENT='        <shortcut>\
