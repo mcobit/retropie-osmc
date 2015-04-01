@@ -140,7 +140,7 @@ scriptdir=/home/osmc/RetroPie-Setup
 #echo "********************************************************"
 #echo ""
 #sleep 1s
-sudo apt-get remove libsdl2-2.0-0 stella libsdl1.2-dev | dialog  --backtitle "RetroPie-OSMC setup script" --title "Remove old SDL2" --gauge "\nPlease wait...\n"  7 60
+sudo apt-get -y --shown-progress remove libsdl2-2.0-0 stella libsdl1.2-dev | dialog  --backtitle "RetroPie-OSMC setup script" --title "Remove old SDL2" --gauge "\nPlease wait...\n"  7 60
 sudo apt-get -f -y --show-progress install | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Fixing broken stuff" --gauge "\nPlease wait...\n"  7 60
 
 #echo ""
