@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VERSION 2.03 by mcobit
+# VERSION 2.04 by mcobit
 
 #echo ""
 #echo "************************************"
