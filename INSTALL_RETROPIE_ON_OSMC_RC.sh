@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VERSION 2.04 by mcobit
+# VERSION 2.06 by mcobit
 
 #echo ""
 #echo "************************************"
@@ -84,10 +84,9 @@ sudo systemctl stop mediacenter | dialog --backtitle "RetroPie-OSMC setup script
 #echo ""
 #sleep 1s
 
-
+sudo cp /etc/apt/sources.list /etc/apt/sources.bak
 sudo grep -v "raspbian" /etc/apt/sources.list > temp
 sudo mv temp /etc/apt/sources.list
-sudo cp /etc/apt/sources.list /etc/apt/sources.bak
 sudo echo "deb http://archive.raspbian.org/raspbian jessie main contrib non-free" >> /etc/apt/sources.list
 
 dialog --backtitle "RetroPie-OSMC setup script" --title "Adding sources of Raspbian Jessie to sources.list file" --pause "\nSources added.\n" 9 60 2
@@ -98,13 +97,16 @@ dialog --backtitle "RetroPie-OSMC setup script" --title "Adding sources of Raspb
 #echo "*******************************"
 #echo ""
 #sleep 1s
-sudo apt-mark unhold libsdl1.2debian libsdl2 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --backtitle "RetroPie-OSMC setup script" --title "Marking Dispmanx SDL libraries for hold" --infobox "\nPlease wait...\n" 5 50
+sudo apt-mark unhold libsdl1.2debian libsdl2 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --backtitle "RetroPie-OSMC setup script" --title "Unmarking Dispmanx SDL libraries for hold" --infobox "\nPlease wait...\n" 5 50
+sudo apt-get remove stella libsdl1.2-dev libsdl2-2.0-0 | dialog  --backtitle "RetroPie-OSMC setup script" --title "Remove old SDL2" --gauge "\nPlease wait...\n"  7 60
 sudo dpkg --configure -a
-sudo dpkg -r --force-depends libsdl2
 sudo apt-get -y -f install | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Checking database" --gauge "\nPlease wait...\n"  7 60
-sudo apt-get update 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" 2>&1 | dialog --backtitle "RetroPie-OSMC setup script" --title "Updating package database..." --infobox "\nPlease wait\n"  5 60
+sudo apt-get update 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" 2>&1 | dialog --backtitle "RetroPie-OSMC setup script" --title "Updating package database..." --infobox "\nPlease wait...\n"  5 60
 sudo apt-get -y --show-progress install libts-dev git dialog | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Installing dependencies" --gauge "\nPlease wait...\n"  7 60
-
+sudo apt-get --show-progress -y install libxinerama1 libboost-system1.49.0 libboost-date-time1.49.0 libboost-filesystem1.49.0 libboost-locale1.49.0 libboost-thread1.49.0 libjpeg8 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Installing stuff" --gauge "\nPlease wait...\n"  7 60
+sudo apt-get --show-progress -y install libxcursor1 libxrandr2 libxss1 libxxf86vm1 libglu1-mesa libudev0 libsdl-mixer1.2 libsdl-image1.2 libsdl-net1.2 libsdl-gfx1.2-5 libsdl-sound1.2 libsdl-ttf2.0-0 console-tools bash-completion libvncserver0 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Install more stuff" --gauge "\nPlease wait...\n"  7 60
+sudo apt-get --show-progress -y install libfreeimage3 libtheora0 libfaad2 libmpeg2-4 freepats libboost-serialization1.49.0 libarchive13 libportaudio0 libportaudio2 libzip2 libvpx1 timidity libaudiofile1 libgcrypt20 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Install even more stuff" --gauge "\nPlease wait...\n"  7 60
+sudo ln -s /usr/lib/arm-linux-gnueabihf/libarchive.so.13.1.2 /usr/lib/arm-linux-gnueabihf/libarchive.so.12
 #echo ""
 #echo "******************************"
 #echo "* Getting the Retropie scipt *"
@@ -124,6 +126,11 @@ sudo chgrp -R osmc RetroPie-Setup
 #echo ""
 #sleep 1s
 cd /home/osmc/RetroPie-Setup
+sed -i '/already/d' scriptmodules/emulators/vice.sh
+sed -i '/depends_/,/}/d' scriptmodules/libretrocores/*
+sed -i '/depends_/,/}/d' scriptmodules/supplementary/*
+sed -i '/depends_/,/}/d' scriptmodules/ports/*
+sed -i '/depends_/,/}/d' scriptmodules/emulators/*
 scriptdir=/home/osmc/RetroPie-Setup
 "$scriptdir/retropie_packages.sh" setup
 
@@ -133,17 +140,8 @@ scriptdir=/home/osmc/RetroPie-Setup
 #echo "********************************************************"
 #echo ""
 #sleep 1s
-sudo dpkg -r --force-depends libsdl2
+sudo apt-get -y --show-progress remove libsdl2-2.0-0 stella libsdl1.2-dev | dialog  --backtitle "RetroPie-OSMC setup script" --title "Remove old SDL2" --gauge "\nPlease wait...\n"  7 60
 sudo apt-get -f -y --show-progress install | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Fixing broken stuff" --gauge "\nPlease wait...\n"  7 60
-sudo apt-get --show-progress -y remove libegl1-mesa libsdl2 libsdl1.2-dev stella libboost1.55-dev libsdl1.2-dev libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev libboost-atomic1.55-dev libboost-chrono1.55-dev libboost-date-time1.55-dev libboost-filesystem1.55-dev libboost-locale1.55-dev libboost-serialization1.55-dev libboost-system1.55-dev libboost-thread1.55-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev  libboost-system-dev libboost-thread-dev | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Uninstalling useless stuff" --gauge "\nPlease wait...\n"  7 60
-
-#echo ""
-#echo "********************************"
-#echo "* Installing some useful stuff *"
-#echo "********************************"
-#echo ""
-#sleep 1s
-sudo apt-get --show-progress -y install libxinerama1 libboost-system1.49.0 libboost-date-time1.49.0 libboost-filesystem1.49.0 libboost-locale1.49.0 libboost-thread1.49.0 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Installing useful stuff" --gauge "\nPlease wait...\n"  7 60
 
 #echo ""
 #echo "*******************************"
@@ -154,14 +152,6 @@ sudo apt-get --show-progress -y install libxinerama1 libboost-system1.49.0 libbo
 sudo apt-get --show-progress -y remove libsdl1.2-dev libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Uninstalling more useless stuff" --gauge "\nPlease wait...\n"  7 60
 
 #echo ""
-#echo "********************************"
-#echo "* Installing more useful stuff *"
-#echo "********************************"
-#echo ""
-#sleep 1s
-sudo apt-get --show-progress -y install libjpeg8 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Installing more useful stuff" --gauge "\nPlease wait...\n"  7 60
-
-#echo ""
 #echo "***************"
 #echo "* Cleaning up *"
 #echo "***************"
@@ -170,12 +160,11 @@ sudo apt-get --show-progress -y install libjpeg8 | grep --line-buffered -oP "(\d
 sudo apt-get --show-progress -y autoremove | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Cleaning up" --gauge "\nPlease wait...\n"  7 60
 
 #echo ""
-#echo "****************"
-#echo " Last round... *"
-#echo "****************"
+#echo "****************************"
+#echo " Dispmanx SDL libraries... *"
+#echo "****************************"
 #echo ""
 #sleep 1s
-sudo apt-get --show-progress -y install libglu1-mesa libxcursor1 libxrandr2 libxss1 libxxf86vm1 libudev0 libsdl-mixer1.2 libsdl-image1.2 libsdl-net1.2 libsdl-gfx1.2-5 libsdl-sound1.2 libsdl-ttf2.0-0 console-tools bash-completion libvncserver0 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Last round" --gauge "\nPlease wait...\n"  7 60
 
 wget http://malus.exotica.org.uk/~buzz/pi/sdl/sdl1/deb/rpi2/libsdl1.2debian_1.2.15-8rpi_armhf.deb 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading Dispmanx SDL 1.2 " --gauge "\nPlease wait...\n"  7 60
 wget http://malus.exotica.org.uk/~buzz/pi/sdl/sdl2/libsdl2_2.0.3_armhf.deb 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading Dispmanx SDL 2" --gauge "\nPlease wait...\n"  7 60
@@ -193,6 +182,7 @@ sudo apt-mark hold libsdl1.2debian libsdl2 2>&1 | grep --line-buffered -oP "(\d+
 sudo grep -v "raspbian" /etc/apt/sources.list > temp
 sudo mv temp /etc/apt/sources.list
 dialog --backtitle "RetroPie-OSMC setup script" --title "Removing unneeded sources from sources.list" --pause "\nSources removed.\n" 9 60 2
+sudo cp /etc/apt/sources.bak /etc/apt/sources.list
 sudo apt-get update 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" 2>&1 | dialog --backtitle "RetroPie-OSMC setup script" --title "Updating package database to revert changes" --infobox "\nPlease wait\n"  5 60
 
 #echo ""
@@ -234,7 +224,7 @@ dialog --backtitle "RetroPie-OSMC setup script" --title "Creating shortcut" --cl
 
 case $? in
   0)
-    echo "Very well..." 
+#   "Very well..." 
     if [ ! "$(grep retropie.sh /home/osmc/.kodi/userdata/addon_data/script.skinshortcuts/mainmenu.DATA.xml)" ]; then
 
 CONTENT='        <shortcut>\
@@ -246,7 +236,7 @@ CONTENT='        <shortcut>\
                 <action>System.Exec(/home/osmc/retropie.sh)</action>\
         </shortcut>'
 
-sed -i.bak '/<\/shortcuts>/i\'"$CONTENT" /home/osmc/.kodi/userdata/addon_data/script.skinshortcuts/mainmenu.DATA$
+sed -i.bak '/<\/shortcuts>/i\'"$CONTENT" /home/osmc/.kodi/userdata/addon_data/script.skinshortcuts/mainmenu.DATA.xml
 
 dialog --backtitle "RetroPie-OSMC setup script" --title "Creating shortcut" --pause "\nShortcut created.\n" 9 60 2
 
