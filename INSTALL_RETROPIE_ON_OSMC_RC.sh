@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VERSION 2.07 by mcobit
+# VERSION 2.08 by mcobit
 
 #echo ""
 #echo "************************************"
@@ -227,6 +227,7 @@ case $? in
   0)
 #   "Very well..." 
     if [ ! "$(grep retropie.sh /home/osmc/.kodi/userdata/addon_data/script.skinshortcuts/mainmenu.DATA.xml)" ]; then
+cp /usr/share/kodi/addons/skin.osmc/shortcuts/mainmenu.DATA.xml /home/osmc/.kodi/userdata/addon_data/script.skinshortcuts/mainmenu.DATA.xml
 
 CONTENT='        <shortcut>\
                 <defaultID />\
@@ -237,7 +238,7 @@ CONTENT='        <shortcut>\
                 <action>System.Exec(/home/osmc/retropie.sh)</action>\
         </shortcut>'
 
-sed -i.bak '/<\/shortcuts>/i\'"$CONTENT" /home/osmc/.kodi/userdata/addon_data/script.skinshortcuts/mainmenu.DATA.xml
+sudo sed -i.bak '/<\/shortcuts>/i\'"$CONTENT" /home/osmc/.kodi/userdata/addon_data/script.skinshortcuts/mainmenu.DATA.xml
 
 dialog --backtitle "RetroPie-OSMC setup script" --title "Creating shortcut" --pause "\nShortcut created.\n" 9 60 2
 
