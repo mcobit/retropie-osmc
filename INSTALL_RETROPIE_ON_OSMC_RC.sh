@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VERSION 2.06 by mcobit
+# VERSION 2.07 by mcobit
 
 #echo ""
 #echo "************************************"
@@ -84,6 +84,7 @@ sudo systemctl stop mediacenter | dialog --backtitle "RetroPie-OSMC setup script
 #echo ""
 #sleep 1s
 
+wget http://archive.raspbian.org/raspbian.public.key -O - | sudo apt-key add -
 sudo cp /etc/apt/sources.list /etc/apt/sources.bak
 sudo grep -v "raspbian" /etc/apt/sources.list > temp
 sudo mv temp /etc/apt/sources.list
