@@ -48,7 +48,7 @@ fi
 #echo "*********************************************"
 #echo ""
 
-wget -O script_temp https://raw.githubusercontent.com/mcobit/retropie-osmc/master/INSTALL_RETROPIE_ON_OSMC_RC.sh 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Checking for newer version of this script" --gauge "\nPlease wait...\n"  7 60 0
+wget --no-check-certificate -O script_temp https://raw.githubusercontent.com/mcobit/retropie-osmc/master/INSTALL_RETROPIE_ON_OSMC_RC.sh 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Checking for newer version of this script" --gauge "\nPlease wait...\n"  7 60 0
 sleep 2
 
  
@@ -84,7 +84,7 @@ sudo systemctl stop mediacenter | dialog --backtitle "RetroPie-OSMC setup script
 #echo ""
 #sleep 1s
 
-wget http://archive.raspbian.org/raspbian.public.key -O - | sudo apt-key add -
+wget --no-check-certificate http://archive.raspbian.org/raspbian.public.key -O - | sudo apt-key add -
 sudo cp /etc/apt/sources.list /etc/apt/sources.bak
 sudo grep -v "raspbian" /etc/apt/sources.list > temp
 sudo mv temp /etc/apt/sources.list
@@ -106,7 +106,7 @@ sudo apt-get update 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" 2>&1 | 
 sudo apt-get -y --show-progress install libts-dev git dialog | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Installing dependencies" --gauge "\nPlease wait...\n"  7 60
 sudo apt-get --show-progress -y install libxinerama1 libboost-system1.49.0 libboost-date-time1.49.0 libboost-filesystem1.49.0 libboost-locale1.49.0 libboost-thread1.49.0 libjpeg8 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Installing stuff" --gauge "\nPlease wait...\n"  7 60
 sudo apt-get --show-progress -y install libxcursor1 libxrandr2 libxss1 libxxf86vm1 libglu1-mesa libudev0 libsdl-mixer1.2 libsdl-image1.2 libsdl-net1.2 libsdl-gfx1.2-5 libsdl-sound1.2 libsdl-ttf2.0-0 console-tools bash-completion libvncserver0 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Install more stuff" --gauge "\nPlease wait...\n"  7 60
-sudo apt-get --show-progress -y install libfreeimage3 libtheora0 libfaad2 libmpeg2-4 freepats libboost-serialization1.49.0 libarchive13 libportaudio0 libportaudio2 libzip2 libvpx1 timidity libaudiofile1 libgcrypt20 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Install even more stuff" --gauge "\nPlease wait...\n"  7 60
+sudo apt-get --show-progress -y install libfreeimage3 libvorbisfile3 libfluidsynth1 libtheora0 libfaad2 libmpeg2-4 freepats libboost-serialization1.49.0 libarchive13 libportaudio0 libportaudio2 libzip2 libvpx1 timidity libaudiofile1 libgcrypt20 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Install even more stuff" --gauge "\nPlease wait...\n"  7 60
 sudo ln -s /usr/lib/arm-linux-gnueabihf/libarchive.so.13.1.2 /usr/lib/arm-linux-gnueabihf/libarchive.so.12
 #echo ""
 #echo "******************************"
@@ -167,8 +167,8 @@ sudo apt-get --show-progress -y autoremove | grep --line-buffered -oP "(\d+(\.\d
 #echo ""
 #sleep 1s
 
-wget http://malus.exotica.org.uk/~buzz/pi/sdl/sdl1/deb/rpi2/libsdl1.2debian_1.2.15-8rpi_armhf.deb 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading Dispmanx SDL 1.2 " --gauge "\nPlease wait...\n"  7 60
-wget http://malus.exotica.org.uk/~buzz/pi/sdl/sdl2/libsdl2_2.0.3_armhf.deb 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading Dispmanx SDL 2" --gauge "\nPlease wait...\n"  7 60
+wget --no-check-certificate http://malus.exotica.org.uk/~buzz/pi/sdl/sdl1/deb/rpi2/libsdl1.2debian_1.2.15-8rpi_armhf.deb 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading Dispmanx SDL 1.2 " --gauge "\nPlease wait...\n"  7 60
+wget --no-check-certificate http://malus.exotica.org.uk/~buzz/pi/sdl/sdl2/libsdl2_2.0.3_armhf.deb 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading Dispmanx SDL 2" --gauge "\nPlease wait...\n"  7 60
 
 sudo dpkg -i libsdl* 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --backtitle "RetroPie-OSMC setup script" --title "Installing Dispmanx SDL libraries" --infobox "\nPlease wait...\n" 5 50
 
@@ -194,9 +194,9 @@ sudo apt-get update 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" 2>&1 | 
 cd /home/osmc
 rm retropie.sh retropie_watchdog.sh emulationstation
 
-wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/retropie.sh 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading retropie.sh script" --gauge "\nPlease wait...\n"  7 60
-wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/retropie_watchdog.sh 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading retropie_watchdog.sh script" --gauge "\nPlease wait...\n"  7 60
-wget https://raw.githubusercontent.com/mcobit/retropie-osmc/master/emulationstation 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading emulationstation script" --gauge "\nPlease wait...\n"  7 60
+wget --no-check-certificate https://raw.githubusercontent.com/mcobit/retropie-osmc/master/retropie.sh 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading retropie.sh script" --gauge "\nPlease wait...\n"  7 60
+wget --no-check-certificate https://raw.githubusercontent.com/mcobit/retropie-osmc/master/retropie_watchdog.sh 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading retropie_watchdog.sh script" --gauge "\nPlease wait...\n"  7 60
+wget --no-check-certificate https://raw.githubusercontent.com/mcobit/retropie-osmc/master/emulationstation 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Downloading emulationstation script" --gauge "\nPlease wait...\n"  7 60
 
 chmod +x emulationstation
 chmod +x retropie_watchdog.sh
