@@ -48,7 +48,7 @@ fi
 #echo "*********************************************"
 #echo ""
 
-wget --no-check-certificate -O script_temp https://raw.githubusercontent.com/mcobit/retropie-osmc/master/INSTALL_RETROPIE_ON_OSMC_RC.sh 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Checking for newer version of this script" --gauge "\nPlease wait...\n"  7 60 0
+wget --no-check-certificate -O script_temp https://raw.githubusercontent.com/jypy/retropie-osmc/master/INSTALL_RETROPIE_ON_OSMC_RC.sh 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Checking for newer version of this script" --gauge "\nPlease wait...\n"  7 60 0
 sleep 2
 
  
