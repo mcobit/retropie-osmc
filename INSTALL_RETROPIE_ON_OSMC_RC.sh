@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# VERSION 2.11 by mcobit
+# VERSION 2.12 by mcobit & jypy (fix for final)
 
 #echo ""
 #echo "************************************"
@@ -48,7 +48,7 @@ fi
 #echo "*********************************************"
 #echo ""
 
-wget --no-check-certificate -O script_temp https://raw.githubusercontent.com/mcobit/retropie-osmc/master/INSTALL_RETROPIE_ON_OSMC_RC.sh 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Checking for newer version of this script" --gauge "\nPlease wait...\n"  7 60 0
+wget --no-check-certificate -O script_temp https://raw.githubusercontent.com/jypy/retropie-osmc/master/INSTALL_RETROPIE_ON_OSMC_RC.sh 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog --title "Checking for newer version of this script" --gauge "\nPlease wait...\n"  7 60 0
 sleep 2
 
  
@@ -105,7 +105,7 @@ sudo apt-get -y -f install | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dia
 sudo apt-get update 2>&1 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" 2>&1 | dialog --backtitle "RetroPie-OSMC setup script" --title "Updating package database..." --infobox "\nPlease wait...\n"  5 60
 sudo apt-get --show-progress -y install libts-dev git dialog | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Installing dependencies" --gauge "\nPlease wait...\n"  7 60
 sudo apt-get --show-progress -y install libxinerama1 libboost-system1.49.0 libboost-date-time1.49.0 libboost-filesystem1.49.0 libboost-locale1.49.0 libboost-thread1.49.0 libjpeg8 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Installing stuff" --gauge "\nPlease wait...\n"  7 60
-sudo apt-get --show-progress -y install libxcursor1 libxrandr2 libxss1 libxxf86vm1 libglu1-mesa libudev0 libsdl-mixer1.2 libsdl-image1.2 libsdl-net1.2 libsdl-gfx1.2-5 libsdl-sound1.2 libsdl-ttf2.0-0 bash-completion libvncserver0 console-tools | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Install more stuff" --gauge "\nPlease wait...\n"  7 60
+sudo apt-get --show-progress -y install libxcursor1 libxrandr2 libxss1 libxxf86vm1 libglu1-mesa libudev0 libsdl-mixer1.2 libsdl-image1.2 libsdl-net1.2 libsdl-gfx1.2-5 libsdl-sound1.2 libsdl-ttf2.0-0 bash-completion libvncserver0 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Install more stuff" --gauge "\nPlease wait...\n"  7 60
 sudo apt-get --show-progress -y install libfreeimage3 libvorbisfile3 libfluidsynth1 libtheora0 libfaad2 libmpeg2-4 freepats libboost-serialization1.49.0 libarchive13 libportaudio0 libportaudio2 libzip2 libvpx1 timidity libaudiofile1 libgcrypt20 | grep --line-buffered -oP "(\d+(\.\d+)?(?=%))" | dialog  --backtitle "RetroPie-OSMC setup script" --title "Install even more stuff" --gauge "\nPlease wait...\n"  7 60
 sudo ln -s /usr/lib/arm-linux-gnueabihf/libarchive.so.13.1.2 /usr/lib/arm-linux-gnueabihf/libarchive.so.12
 #echo ""
