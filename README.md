@@ -1,3 +1,5 @@
+!!! This method is old and unsupported. Please use retrosmc instead!!!
+
 # retropie-osmc
 This is a simple script to install retropie alongside osmc.
 
